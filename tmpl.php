@@ -1,18 +1,4 @@
-<?php
-
-$debug = ($_GET['json'])?true:false;
-$fullposts = false;
-
-
-if($debug){ 
-	header('content-type:application/json');
-	include('index.json');
-	die();
-} else {
-	$contents = json_decode(@file_get_contents('index.json'),true); 
-}
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />

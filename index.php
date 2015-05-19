@@ -1,6 +1,12 @@
 <?php
 
 
+$blogs = array(
+	parseFeed('http://subaddiction.net/?feed=rss2'),
+	parseFeed('http://electroswingitalia.com/?feed=rss2'),
+);
+
+
 function parseFeed($url, $max_items=8, $tagname='item'){
                 $doc = new DOMDocument();
                 $doc->load($url);
@@ -74,20 +80,13 @@ if(file_exists('index.json')){
 }
 
 if(!file_exists('index.json') || $update){
-
-	$blogs = array(
-		parseFeed('http://subaddiction.net/?feed=rss2'),
-		parseFeed('http://electroswingitalia.com/?feed=rss2'),
-		parseFeed('http://wobblerecords.com/?feed=rss2'),
-		parseFeed('http://wobblelovers.com/?feed=rss2'),
-		parseFeed('http://glitchhop.it/?feed=rss2'),
-	);
-
-	$test = mixArrays($blogs, 'pubDate', 'desc', true);
+	
+	global $blogs;
+	$datamix = mixArrays($blogs, 'pubDate', 'desc', true);
 
 	$mix = array();
 	$i = 0;
-	foreach($test as $kk=>$vv){
+	foreach($datamix as $kk=>$vv){
 		$i++;
 		if($i > 8){
 			break;
@@ -104,7 +103,22 @@ if(!file_exists('index.json') || $update){
 }
 
 
-include('tmpl.php');
+$debug = ($_GET['json'])?true:false;
+$fullposts = false;
+
+
+if($debug){ 
+	header('content-type:application/json');
+	include('index.json');
+	die();
+} else {
+	$contents = json_decode(@file_get_contents('index.json'),true);
+	include('tmpl.php');
+	die();
+}
+
+
+
 
 
 ?>
