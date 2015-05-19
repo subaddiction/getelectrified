@@ -1,10 +1,12 @@
 <?php
 
-
 $blogs = array(
 	parseFeed('http://subaddiction.net/?feed=rss2'),
 	parseFeed('http://electroswingitalia.com/?feed=rss2'),
 );
+
+$fullposts = false;
+$debug = ($_GET['json'])?true:false;
 
 
 function parseFeed($url, $max_items=8, $tagname='item'){
@@ -81,7 +83,6 @@ if(file_exists('index.json')){
 
 if(!file_exists('index.json') || $update){
 	
-	global $blogs;
 	$datamix = mixArrays($blogs, 'pubDate', 'desc', true);
 
 	$mix = array();
@@ -101,10 +102,6 @@ if(!file_exists('index.json') || $update){
 	@file_put_contents('index.json', $mix);
 
 }
-
-
-$debug = ($_GET['json'])?true:false;
-$fullposts = false;
 
 
 if($debug){ 
