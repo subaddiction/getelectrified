@@ -9,13 +9,7 @@
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width" />
 <link rel="shortcut icon" href="favicon.ico" />
-<? /* <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/fonts.css" type="text/css" media="screen" /> */ ?>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-<? /* <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/frontend.js"></script>  */ ?>
 </head>
 <body>
 <header>
