@@ -1,13 +1,16 @@
 <?php
 
+$maxitems = 100;
+
 $blogs = array(
-	parseFeed('http://subaddiction.net/?feed=rss2'),
-	parseFeed('http://electroswingitalia.com/?feed=rss2'),
+	parseFeed('http://subaddiction.net/?feed=rss2', $maxitems),
+	parseFeed('http://electroswingitalia.com/?feed=rss2', $maxitems),
+	parseFeed('http://feeds.soundcloud.com/users/soundcloud:users:2147525/sounds.rss', $maxitems),
+	parseFeed('http://feeds.soundcloud.com/users/soundcloud:users:105977/sounds.rss', $maxitems),
 );
 
 $fullposts = false;
 $debug = ($_GET['json'])?true:false;
-
 
 function parseFeed($url, $max_items=8, $tagname='item'){
                 $doc = new DOMDocument();
@@ -89,7 +92,7 @@ if(!file_exists('index.json') || $update){
 	$i = 0;
 	foreach($datamix as $kk=>$vv){
 		$i++;
-		if($i > 8){
+		if($i > $maxitems){
 			break;
 		} else {
 			//echo $kk." --- ".$vv['pubDate']." --- ".$vv['title']."\n";
